@@ -1,28 +1,25 @@
-import java.util.Random;
+
+
 public class Main {
 
     public static void main(String[] args) {
 
-        Player player = new Player();
-        Player player1 = new Player("Olisadebe");
+        Game game = new Game();
+        Player player1 = new PlayerHuman();
+        Player player2 = new PlayerHuman();
 
-        int number;
-        int guess;
-        Random rand = new Random();
-
-        do {
-            number = rand.nextInt(6) + 1;
-            System.out.println("Kostka: " + number);
-
-            guess = player.guess();
-            System.out.println("Gracz: " + guess);
-
-            if (number == guess){
-                System.out.println("Dobrze");
-            }
-            else {
-                System.out.println("zle");}
+        try{
+            player1.setName("Kamil");
+            player2.setName("Slimak");
         }
-        while (number != guess);
+        catch (IllegalArgumentException ex){
+            System.err.println("Błąd: " + ex.getMessage());
+        }
+
+        game.addPlayer(player1);
+        game.addPlayer(player2);
+        game.play();
+
+
     }
 }

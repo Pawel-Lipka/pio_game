@@ -1,8 +1,7 @@
-import java.util.Random;
 
-public class Player {
 
-     private Random brain = new Random();
+abstract public class Player {
+
 
      public Player() {}
 
@@ -16,14 +15,12 @@ public class Player {
      }
 
      public void setName(String name){
-         if (name!= null && !name.isEmpty()){
+         if (name!= null && name.matches("^[A-Z][a-z]{1,12}")){
              this.name = name;
          }
          else {
-             System.out.println("Błędne imię ");
+             throw new IllegalArgumentException("Błędne imię");
          }
      }
-     public int guess(){
-         return brain.nextInt(6) + 1;
-     }
+     abstract public int guess();
 }
